@@ -39,4 +39,4 @@ const MAX_NUM_PARTICLES = 1000;
  */
 const ZOMBIE_ANIMATION_SPEED = 12;
 
-const MAX_ZOMBIES = 100;
+const MAX_ZOMBIES = 60;
