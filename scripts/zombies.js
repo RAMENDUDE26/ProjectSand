@@ -195,7 +195,7 @@ class Zombie {
     /* cache for performance */
     const isDragging = this.isDragging();
 
-    const forceNonStatic = this.forceNonStatic;
+    const forceNonStatic = this.forceNonStatic && !isDragging;
     this.forceNonStatic = false;
     const maxStaticImpulse = 0.3;
     const maxVelocity = 500;
@@ -211,7 +211,7 @@ class Zombie {
        * out, so detect this case and mitigate it.
        */
       const impulse = body.constraintImpulse;
-      if (!this.forceNonStatic && random() < 15 &&
+      if (!isDragging && !this.forceNonStatic && random() < 15 &&
           (Math.abs(impulse.x) >= maxStaticImpulse ||
            Math.abs(impulse.y) >= maxStaticImpulse)) {
         this.forceNonStatic = true;
@@ -271,7 +271,7 @@ class Zombie {
          */
         makeStatic = this.handleCanvasCollisions(body, now, isDragging);
 
-        if (makeStatic) {
+        if (makeStatic && !isDragging) {
           if (forceNonStatic) {
             makeStatic = false;
           } else if (this.state === ZOMBIE_STATE_BURNING) {
@@ -348,7 +348,7 @@ class Zombie {
      */
     if (isDragging) {
       if (softBodyFreeDrag ||
-          now - softBodyDragStart > Math.random() * 1000 + 1000) {
+          now - softBodyDragStart > Math.random() * 500 + 750) {
         softBodyFreeDrag = true;
         return false;
       }
@@ -393,7 +393,7 @@ class Zombie {
          *
          * This could certainly be tuned.
          */
-        if (random() < 1 && elem !== ICE) {
+        if (!isDragging && random() < 1 && elem !== ICE) {
           gameImagedata32[iBase + x] = BACKGROUND;
         }
 
