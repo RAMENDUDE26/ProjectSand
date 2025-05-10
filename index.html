@@ -4,18 +4,39 @@
 <head>
   <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
   <title>Project Sand</title>
-  <meta name="keywords" content="sand, falling, game" />
-  <meta name="description" content="Project Sand: A modern version of the classic Hell of Sand Falling Game" />
-  <meta name="subject" content="Project Sand" />
   <meta charset="UTF-8">
-  <meta name="google" content="notranslate">
-  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: #000;
+      overflow: hidden;
+    }
+
+    #mainCanvas {
+      width: 1200px;
+      height: 800px;
+      display: block;
+      margin: auto;
+      border: 1px solid #444;
+    }
+
+    #gameWrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #menuWrapper {
+      display: none; /* hide menu if desired */
+    }
+  </style>
 </head>
 
 <body>
   <div class="wrapper" id="gameWrapper">
-    <canvas id="mainCanvas"></canvas>
+    <canvas id="mainCanvas" width="1200" height="800"></canvas>
     <div id="menuWrapper">
       <table id="elementTable"></table>
       <div id="optionsCol1" class="optionsCol">
